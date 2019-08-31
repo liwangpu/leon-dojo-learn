@@ -1,8 +1,9 @@
 div.mytool-singleUploader {
+  display: inline-block;
 }
 
 div.mytool-singleUploader input[type="text"] {
-  width: 240px;
+  width: 100%;
   font: inherit;
   font-style: italic;
   line-height: normal;
@@ -11,6 +12,7 @@ div.mytool-singleUploader input[type="text"] {
   text-align: start;
   color: #000000;
   border: 1px solid #b5bcc7;
+  outline: none;
 }
 div.mytool-singleUploader input[type="text"].required {
   border-color: #d46464;
@@ -20,6 +22,7 @@ div.mytool-singleUploader input[type="text"].required::placeholder {
 }
 div.mytool-singleUploader input[type="text"]:hover {
   border-color: #759dc0;
+  background-color: #e5f2fe;
 }
 div.mytool-singleUploader input[type="file"] {
   display: none;
