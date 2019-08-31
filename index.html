@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="./favicon.ico" type="image/icon" />
+    <link rel="stylesheet" href="./dojo-1.15.0/dijit/themes/claro/claro.css" media="screen">
+    <link rel="stylesheet" href="./scripts/styles/singleUploader.css">
     <style>
         html,
         body {
@@ -23,6 +25,7 @@
     </style>
     <script>
         dojoConfig = {
+            parseOnLoad: true,
             packages: [
                 { name: "mytool", location: "../../scripts" }
             ]
@@ -30,15 +33,39 @@
     </script>
     <script src="./dojo-1.15.0/dojo/dojo.js"></script>
     <script>
-        require(["mytool/demo"], function (demo) {
+        require(["mytool/singleUploader", "dojo/ready", "dijit/registry", "dojo/dom", "dojo/on"], function (uploader, ready, registry, dom, on) {
+            ready(function () {
+                on(dom.byId("btnSummit"), "click", summit);
+                var wform = registry.byId("myform");
+                wform.on("change", function () {
+                    // console.log(new Date());
+                });
+            });//ready
 
-        });
+            function summit() {
+                var wform = registry.byId("myform");
+
+                console.log('form value:',wform.getValues());
+                console.log(wform.validate());
+            }//summit
+        });//require
     </script>
     <title>Document</title>
 </head>
 
-<body>
+<body class="claro">
+    <form data-dojo-type="dijit/form/Form" id="myform">
 
+        <div data-dojo-type="mytool/singleUploader" data-dojo-props="name:'salary',accept:'.xlsx',required:true">
+        </div>
+        <br>
+        <br>
+        <input type="text" data-dojo-type="dijit/form/NumberTextBox" data-dojo-props="constraints:{min:1,max:12}"
+            name="phone" placeholder="号码">
+        <br>
+        <br>
+        <input type="button" value="提交" id="btnSummit">
+    </form>
 </body>
 
 </html>
